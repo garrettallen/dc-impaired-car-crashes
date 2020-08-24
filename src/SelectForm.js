@@ -8,22 +8,26 @@ export default class SelectForm extends React.Component {
     }
 
     componentDidMount() {
-        const options = this.props.geoJson.features.map(f => {
-            const item = f.properties;
+        const options = this.props.geoJson.features.map(feature => {
+            const item = feature.properties;
             return {
                 label: `${item.name}: ${Math.max(0, item.total)}`,
-                value: f.id,
+                value: feature.id,
                 total: item.total
             };
         });
-        this.setState({ options: options.sort((a, b) => {return b.total - a.total; }) });
+        this.setState({
+            options: options.sort((a, b) => {
+                return b.total - a.total;
+            })
+        });
     }
 
     onSelectChange = (option) => {
-        this.props.selectHood(option.value);
+        this.props.selectNeighborhood(option.value);
     }
 
-    getValue = () => {
+    getOption = () => {
         if (this.state.options.length) {
             return this.state.options.find(d => d.value === this.props.featureId) || null;
         }
@@ -35,8 +39,8 @@ export default class SelectForm extends React.Component {
                 isMulti={false}
                 onChange={this.onSelectChange}
                 options={this.state.options}
-                value={this.getValue()}
-        />);
+                value={this.getOption()}
+            />);
     }
 
 }

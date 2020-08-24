@@ -3,7 +3,6 @@ import { scaleLinear } from 'd3-scale';
 import Map from './Map';
 import LineChart from './LineChart';
 import SelectForm from './SelectForm';
-import Status from './Status';
 import './App.css';
 import geoJson from './annotatedData.geo.json';
 
@@ -13,11 +12,12 @@ const colorScale = scaleLinear()
     .range([[220, 180, 180], [220, 20, 60]]);
 
 class App extends React.Component {
+
     state = {
         featureId: ""
     }
 
-    selectHood = (featureId) => {
+    selectNeighborhood = (featureId) => {
         this.setState({ featureId });
     }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
                     <Map
                         geoJson={geoJson}
                         featureId={this.state.featureId}
-                        selectHood={this.selectHood}
+                        selectNeighborhood={this.selectNeighborhood}
                         colorScale={colorScale} />
                 </div>
                 <div className="sidebar">
@@ -40,29 +40,29 @@ class App extends React.Component {
                             <em>Washington DC, 2010-2014</em>
                         </p>
                         <p>
-                            This data visualization shows the number of impaired
+                            This interactive data visualization shows the number of impaired
                             traffic accidents in Washington DC over the five-year period of 2010-2014, separated out
                             by neighborhood.
                         </p>
                         <p>
                             Use the map, dropdown menu, or chart to filter by neighborhood.
                         </p>
-                        <Status />
                         <SelectForm
                             geoJson={geoJson}
                             featureId={this.state.featureId}
-                            selectHood={this.selectHood}
+                            selectNeighborhood={this.selectNeighborhood}
                             colorScale={colorScale} />
                     </div>
                     <LineChart
                         geoJson={geoJson}
                         featureId={this.state.featureId}
-                        selectHood={this.selectHood}
+                        selectNeighborhood={this.selectNeighborhood}
                         colorScale={colorScale} />
                 </div>
             </div>
         );
     }
+
 }
 
 export default App;

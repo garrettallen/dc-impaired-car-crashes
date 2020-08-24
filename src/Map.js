@@ -43,12 +43,13 @@ lightingEffect.shadowColor = [0, 0, 0, 0.5];
 const effects = [lightingEffect];
 
 export default class Map extends React.Component {
+
     getTooltip = ({ object }) => {
         if (object) {
-            this.props.selectHood(object.id);
+            this.props.selectNeighborhood(object.id);
             return { html: ReactDOMServer.renderToStaticMarkup(<div>{object.properties.name}</div>) };
         } else {
-            this.props.selectHood(null);
+            this.props.selectNeighborhood(null);
         }
     }
 
@@ -115,4 +116,5 @@ export default class Map extends React.Component {
             </DeckGL>
         );
     }
+
 }
