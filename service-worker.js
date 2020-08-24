@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/dc-impaired-car-crashes/precache-manifest.5c7474ae91e8be31ad19b9abb14e2117.js"
+  "/dc-impaired-car-crashes/precache-manifest.cf2bc5a7c61b5e31a53cc8eaba420ff7.js"
 );
 
 self.addEventListener('message', (event) => {
